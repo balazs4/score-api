@@ -1,0 +1,11 @@
+{
+  "name": "score-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:balazs4/score-api.git",
+  "author": "balazs4 <balazs4web@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.2.0"
+  }
+}
