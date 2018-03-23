@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
 
-const [, , x] = process.argv;
+const [, , search] = process.argv;
 
 (async () => {
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
-  await page.goto(`http://livescore.com/${x}`);
+  await page.goto(`http://livescore.com/${search}`);
 
   const { matches } = await page.evaluate(() =>
     [...document.querySelector('div[data-type=container]').children]
