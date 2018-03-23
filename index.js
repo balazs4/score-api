@@ -53,6 +53,23 @@ const [, , search] = process.argv;
         { matches: [], meta: { id: null, date: null, name: null } }
       )
   );
-  console.log(JSON.stringify(matches, null, 2));
+
+  const fullMatches = await Promise.all(
+    matches.map(async match => {
+      if (match.href === null) return match;
+      const matchPage = await browser.newPage();
+      await matchPage.goto(`http://livescore.com${match.href}`);
+      const raw = await matchPage.evaluate(() => {
+        return [
+          ...document
+            .querySelector('div[data-type=content]')
+            .querySelectorAll('.row')
+        ].map(x => x.innerText.replace(/\n/g, ' '));
+      });
+      return Object.assign({}, match, { raw });
+    })
+  );
+
+  console.log(JSON.stringify(fullMatches, null, 2));
   await browser.close();
 })();
