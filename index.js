@@ -7,7 +7,7 @@ const [, , search] = process.argv;
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
-  await page.goto(`http://livescore.com/${search}`);
+  await page.goto(`http://livescore.com${search}`);
 
   const { matches } = await page.evaluate(() =>
     [...document.querySelector('div[data-type=container]').children]
@@ -32,12 +32,18 @@ const [, , search] = process.argv;
               x.innerText.trim()
             );
             const min = row.querySelector('.min').innerText.trim();
-            const score = row.querySelector('.sco').innerText.trim();
+            const scoreElement = row.querySelector('.sco');
+            const score = scoreElement.innerText
+              .split('-')
+              .map(x => x.trim())
+              .join('-');
+            const scoreLink = scoreElement.querySelector('a.scorelink');
+            const href = scoreLink ? scoreLink.attributes['href'].value : null;
             const match = {
               home,
               away,
-              score,
               min,
+              href,
               score
             };
             acc.matches.push(Object.assign(match, acc.meta));
