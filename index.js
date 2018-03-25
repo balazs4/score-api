@@ -1,13 +1,15 @@
 const puppeteer = require('puppeteer');
 
-const [, , search, filter] = process.argv;
+const [, , search = '/soccer/', filter] = process.argv;
 
 (async () => {
   const browser = await puppeteer.launch({
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
-  await page.goto(`http://livescore.com${search}`);
+  await page.goto(`http://livescore.com${search}`, {
+    waitUntil: 'networkidle2'
+  });
 
   const { matches } = await page.evaluate(() =>
     [...document.querySelector('div[data-type=container]').children]
@@ -68,7 +70,9 @@ const [, , search, filter] = process.argv;
       .map(async match => {
         if (match.href === null) return match;
         const matchPage = await browser.newPage();
-        await matchPage.goto(`http://livescore.com${match.href}`);
+        await matchPage.goto(`http://livescore.com${match.href}`, {
+          waitUntil: 'networkidle2'
+        });
         const { values } = await matchPage.evaluate(match => {
           const rows = [
             ...document
