@@ -64,9 +64,7 @@ const extract = match => {
 module.exports = browser => async match => {
   if (match.href === null) return match;
   const page = await browser.newPage();
-  await page.goto(`http://livescore.com${match.href}`, {
-    waitUntil: 'networkidle2'
-  });
+  await page.goto(match.href, { waitUntil: 'networkidle2' });
   const { values } = await page.evaluate(extract, match);
   return Object.assign({}, match, values);
 };

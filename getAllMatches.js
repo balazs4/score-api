@@ -27,7 +27,9 @@ const extract = () => {
             .map(x => x.trim())
             .join('-');
           const scoreLink = scoreElement.querySelector('a.scorelink');
-          const href = scoreLink ? scoreLink.attributes['href'].value : null;
+          const href = scoreLink
+            ? window.location.origin + scoreLink.attributes['href'].value
+            : null;
           const { date, name } = acc.meta;
           const match = {
             date,
