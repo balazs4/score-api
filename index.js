@@ -35,26 +35,27 @@ const typeDefs = `
      away: String
      href: String
      min: String
+     score: String
    }
 
    type Query {
      matches(resource: String): [Match]
-     match(href: String!): [Match]
+     match(href: String!): Match
    }
 `;
 
 const resolvers = {
   Query: {
-    matches(resource) {
-      console.log(resource);
+    matches(obj, args, context, info) {
+      console.log(JSON.stringify(args, null, 2));
       return puppeteer
         .launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .then(setupGetAllMatches)
-        .then(fn => fn(resource || '/soccer/'));
+        .then(fn => fn(args.resource || '/soccer/'));
     },
-    match(href) {
+    match(obj, args, context, info) {
       return puppeteer
         .launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox']
