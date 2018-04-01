@@ -50,6 +50,12 @@ const extract = () => {
 
 module.exports = browser => async resource => {
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+  page.on('request', request => {
+    const type = request.resourceType();
+    if (['images', 'font', 'stylesheet'].some(x => x === type)) request.abort();
+    else request.continue();
+  });
   await page.goto(`http://livescore.com${resource}`, {
     waitUntil: 'networkidle2'
   });

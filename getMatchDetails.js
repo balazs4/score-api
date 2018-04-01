@@ -64,6 +64,12 @@ const extract = match => {
 module.exports = browser => async match => {
   if (match.href === null) return match;
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+  page.on('request', request => {
+    const type = request.resourceType();
+    if (['images', 'font', 'stylesheet'].some(x => x === type)) request.abort();
+    else request.continue();
+  });
   await page.goto(match.href, { waitUntil: 'networkidle2' });
   const { values } = await page.evaluate(extract, match);
   return Object.assign({}, match, values);
