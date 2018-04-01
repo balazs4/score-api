@@ -1,33 +1,8 @@
 const puppeteer = require('puppeteer');
-const setupGetAllMatches = require('./getAllMatches');
-const setupGetMatchDetails = require('./getMatchDetails');
-
-const [, , resource = '/soccer/', filterText] = process.argv;
-
-const fn = filterText
-  ? ({ home, away }) => [home, away].some(x => x.includes(filterText))
-  : _ => true;
-
-//(async () => {
-//  const browser = await puppeteer.launch({
-//    args: ['--no-sandbox', '--disable-setuid-sandbox']
-//  });
-//
-//  const getAllMatches = setupGetAllMatches(browser);
-//  const getMatchDetails = setupGetMatchDetails(browser);
-//
-//  const matches = await getAllMatches(resource);
-//  const details = await Promise.all(matches.filter(fn).map(getMatchDetails));
-//
-//  await browser.close();
-//  console.log(JSON.stringify(details, null, 2));
-//  return details;
-//})();
-//
-//
-//
 const { microGraphql } = require('apollo-server-micro');
 const { makeExecutableSchema } = require('graphql-tools');
+const setupGetAllMatches = require('./getAllMatches');
+const setupGetMatchDetails = require('./getMatchDetails');
 
 const typeDefs = `
    type Match {
@@ -36,32 +11,51 @@ const typeDefs = `
      href: String
      min: String
      score: String
+     date: String
+     name: String
+     info: Info 
+   }
+
+   type Info {
+     matchdetails: [Detail]
+     venue: String
+     referee: String
+   }
+
+   type Detail {
+     min: String
+     event: String
+     player: String
    }
 
    type Query {
-     matches(resource: String): [Match]
-     match(href: String!): Match
+     matches(resource: String, filter: String): [Match]
    }
 `;
 
 const resolvers = {
   Query: {
-    matches(obj, args, context, info) {
-      console.log(JSON.stringify(args, null, 2));
+    matches(_, { resource = '/soccer/', filter = null }) {
       return puppeteer
         .launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .then(setupGetAllMatches)
-        .then(fn => fn(args.resource || '/soccer/'));
-    },
-    match(obj, args, context, info) {
+        .then(fn => fn(resource))
+        .then(
+          x =>
+            filter ? x.filter(y => `${y.home}-${y.away}`.includes(filter)) : x
+        );
+    }
+  },
+  Match: {
+    info: match => {
       return puppeteer
         .launch({
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .then(setupGetMatchDetails)
-        .then(fn => fn(href));
+        .then(fn => fn(match));
     }
   }
 };

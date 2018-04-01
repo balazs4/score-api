@@ -72,5 +72,5 @@ module.exports = browser => async match => {
   });
   await page.goto(match.href, { waitUntil: 'networkidle2' });
   const { values } = await page.evaluate(extract, match);
-  return Object.assign({}, match, values);
+  return values;
 };
