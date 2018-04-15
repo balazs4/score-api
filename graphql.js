@@ -1,8 +1,9 @@
 const puppeteer = require('puppeteer');
 const { microGraphql } = require('apollo-server-micro');
 const { makeExecutableSchema } = require('graphql-tools');
-const setupGetAllMatches = require('./getAllMatches');
-const setupGetMatchDetails = require('./getMatchDetails');
+
+const setupGetAllMatches = require('./getters/getAllMatches');
+const setupGetMatchDetails = require('./getters/getMatchDetails');
 
 const typeDefs = `
    type Match {

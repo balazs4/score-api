@@ -1,0 +1,13 @@
+{
+  "rules": [
+    {
+      "pathname": "/graphiql",
+      "dest": "http://localhost:3002"
+    },
+    {
+      "pathname": "/graphql",
+      "method": ["GET", "POST"],
+      "dest": "http://localhost:3001"
+    }
+  ]
+}
