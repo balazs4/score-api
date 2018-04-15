@@ -10,9 +10,15 @@
     "graphql": "^0.13.2",
     "graphql-tools": "^2.23.1",
     "micro": "^9.1.4",
+    "micro-proxy": "^1.1.0",
+    "npm-run-all": "^4.1.2",
     "puppeteer": "^1.2.0"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "micro index.js"
+    "graphql": "micro graphql.js -p 3001",
+    "graphiql": "micro graphiql.js -p 3002",
+    "proxy": "micro-proxy -r rules.json -p 3000",
+    "start": "npm-run-all -pl proxy graphql graphiql"
   }
 }
