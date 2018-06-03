@@ -39,6 +39,7 @@ const resolvers = {
     matches(_, { resource = '/soccer/', filter = null }) {
       return puppeteer
         .launch({
+          executablePath: '/usr/bin/chromium-browser',
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .then(setupGetAllMatches)
@@ -53,6 +54,7 @@ const resolvers = {
     info: match => {
       return puppeteer
         .launch({
+          executablePath: '/usr/bin/chromium-browser',
           args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         .then(setupGetMatchDetails)
