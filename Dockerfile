@@ -11,4 +11,4 @@ COPY . /app
 WORKDIR /app
 RUN ["yarn", "install", "--production"]
 EXPOSE 3000
-CMD ["yarn", "run","start:full"]
+CMD ["yarn", "start"]
