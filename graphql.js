@@ -39,19 +39,25 @@ const typeDefs = `
    }
 
    type Query {
-     matches(resource: String, filter: String): [Match]
+     matches(team: String, resource: String): [Match]
    }
 `;
 
 const resolvers = {
   Query: {
-    matches(_, { resource = '/soccer/', filter = null }) {
+    matches(_, { resource = '/soccer/', team = null }) {
       return launch()
         .then(setupGetAllMatches)
         .then(fn => fn(resource))
         .then(
           x =>
-            filter ? x.filter(y => `${y.home}-${y.away}`.includes(filter)) : x
+            team
+              ? x.filter(y =>
+                  `${y.home}-${y.away}`
+                    .toLowerCase()
+                    .includes(team.toLowerCase())
+                )
+              : x
         );
     }
   },
