@@ -9,8 +9,8 @@ const { PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = false } = process.env;
 const options = {
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 };
-if (PUPPETEER_SKIP_CHROMIUM_DOWNLOAD === true) {
-  options[executablePath] = '/usr/bin/chromium-browser';
+if (PUPPETEER_SKIP_CHROMIUM_DOWNLOAD) {
+  options['executablePath'] = '/usr/bin/chromium-browser';
 }
 const launch = () => puppeteer.launch(options);
 

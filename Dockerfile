@@ -9,6 +9,6 @@ RUN apk update && apk upgrade && \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 COPY . /app
 WORKDIR /app
-RUN ["yarn", "install", "--production"]
 EXPOSE 3000
+RUN ["yarn", "install", "--production"]
 CMD ["yarn", "start"]
