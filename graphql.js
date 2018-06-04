@@ -5,6 +5,15 @@ const { makeExecutableSchema } = require('graphql-tools');
 const setupGetAllMatches = require('./getters/getAllMatches');
 const setupGetMatchDetails = require('./getters/getMatchDetails');
 
+const { PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = false } = process.env;
+const options = {
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+};
+if (PUPPETEER_SKIP_CHROMIUM_DOWNLOAD === true) {
+  options[executablePath] = '/usr/bin/chromium-browser';
+}
+const launch = () => puppeteer.launch(options);
+
 const typeDefs = `
    type Match {
      home: String
@@ -37,11 +46,7 @@ const typeDefs = `
 const resolvers = {
   Query: {
     matches(_, { resource = '/soccer/', filter = null }) {
-      return puppeteer
-        .launch({
-          executablePath: '/usr/bin/chromium-browser',
-          args: ['--no-sandbox', '--disable-setuid-sandbox']
-        })
+      return launch()
         .then(setupGetAllMatches)
         .then(fn => fn(resource))
         .then(
@@ -52,11 +57,7 @@ const resolvers = {
   },
   Match: {
     info: match => {
-      return puppeteer
-        .launch({
-          executablePath: '/usr/bin/chromium-browser',
-          args: ['--no-sandbox', '--disable-setuid-sandbox']
-        })
+      return launch()
         .then(setupGetMatchDetails)
         .then(fn => fn(match));
     }

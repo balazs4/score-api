@@ -5,7 +5,7 @@
       "dest": "http://localhost:3002"
     },
     {
-      "pathname": "/graphql",
+      "pathname": "/",
       "method": ["GET", "POST"],
       "dest": "http://localhost:3001"
     }
