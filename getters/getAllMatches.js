@@ -20,7 +20,10 @@ const extract = () => {
           const [home, away] = [...row.querySelectorAll('.ply.name')].map(x =>
             x.innerText.trim()
           );
-          const min = row.querySelector('.min').innerText.trim();
+          const min = row
+            .querySelector('.min')
+            .innerText.trim()
+            .replace('Limited coverage', '');
           const scoreElement = row.querySelector('.sco');
           const score = scoreElement.innerText
             .split('-')

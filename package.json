@@ -19,7 +19,6 @@
     "graphql": "micro graphql.js -p 3001",
     "graphiql": "micro graphiql.js -p 3002",
     "proxy": "micro-proxy -r rules.json -p 3000",
-    "start": "micro graphql.js -p 3000",
-    "start:full": "npm-run-all -pl proxy graphql graphiql"
+    "start": "npm-run-all -pl proxy graphql graphiql"
   }
 }
