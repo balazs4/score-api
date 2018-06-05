@@ -39,7 +39,9 @@ const typeDefs = `
    }
 
    type Query {
-     matches(team: String, resource: String): [Match]
+     # team: filter for a specific team e.g.: Roma
+     # resource: any www.livescore.com resource e.g.: /soccer/italy/serie-a/ 
+     matches(team: String, resource: String):[Match]
    }
 `;
 
