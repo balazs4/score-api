@@ -1,6 +1,6 @@
 # score-api
 
-> unoffical `graphql` endpoint for <http://www.livescore.com>
+> unofficial graphql endpoint for http://www.livescore.com page
 
 **Live Demo**: <https://score-api.now.sh>
 
@@ -14,7 +14,7 @@ The resolvers open the livescore page, parse its content and sends back to the c
 
 + I :heart: :soccer:
 + I wanted to play with `graphql` :metal:
-
++ It could be _somehow_ 'useful' for the World Cup 2018 :relaxed:
 
 ## Can I have my own deployment?
 
@@ -26,6 +26,6 @@ Sure!
 [@balazs4](https://twitter.com/@balazs4)
 
 ## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
+Hey dude, if you like the project you can help me out for a couple of :beers:! Cheers!
 
 [![Beerpay](https://beerpay.io/balazs4/score-api/badge.svg?style=beer-square)](https://beerpay.io/balazs4/score-api)  [![Beerpay](https://beerpay.io/balazs4/score-api/make-wish.svg?style=flat-square)](https://beerpay.io/balazs4/score-api?focus=wish)
