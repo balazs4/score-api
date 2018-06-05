@@ -24,3 +24,8 @@ Sure!
 ## Author
 
 [@balazs4](https://twitter.com/@balazs4)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/balazs4/score-api/badge.svg?style=beer-square)](https://beerpay.io/balazs4/score-api)  [![Beerpay](https://beerpay.io/balazs4/score-api/make-wish.svg?style=flat-square)](https://beerpay.io/balazs4/score-api?focus=wish)
