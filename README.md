@@ -6,7 +6,7 @@
 
 ## How?
 
-it uses the [puppeteer](https://github.com/GoogleChrome/puppeteer)  under the hood on every single [graphql](https://graphql.org/) query.
+it uses the [puppeteer](https://github.com/GoogleChrome/puppeteer)  under the hood for every single [graphql](https://graphql.org/) query.
 
 The resolvers open the livescore page, parse its content and sends back to the client.
 
