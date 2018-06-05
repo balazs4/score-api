@@ -6,6 +6,9 @@
 
 **Endpoint**: <https://score-api.now.sh/graphql>
 
+![screenhot](./2018_06_05_21_30_1248_319.png)
+
+
 ## How?
 
 it uses the [puppeteer](https://github.com/GoogleChrome/puppeteer)  under the hood for every single [graphql](https://graphql.org/) query.
