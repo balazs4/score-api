@@ -2,7 +2,9 @@
 
 > unofficial graphql endpoint for http://www.livescore.com page
 
-**Live Demo**: <https://score-api.now.sh>
+**GraphiQL Live Demo**: <https://score-api.now.sh>
+
+**Endpoint**: <https://score-api.now.sh/graphql>
 
 ## How?
 
