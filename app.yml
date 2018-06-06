@@ -1,0 +1,19 @@
+apps:
+  - name: graphql
+    autostart: true
+    script: npm
+    args:
+      - run
+      - graphql
+  - name: graphiql
+    autostart: true
+    script: npm
+    args:
+      - run
+      - graphiql
+  - name: proxy
+    autostart: true
+    script: npm
+    args:
+      - run
+      - proxy

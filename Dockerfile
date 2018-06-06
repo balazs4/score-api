@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM keymetrics/pm2:latest-alpine
 LABEL maintainer="balazs4web@gmail.com"
 RUN apk update && apk upgrade && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
@@ -11,4 +11,4 @@ COPY . /app
 WORKDIR /app
 EXPOSE 3000
 RUN ["yarn", "install", "--production"]
-CMD ["yarn", "start"]
+CMD ["pm2-runtime", "app.yml"]
