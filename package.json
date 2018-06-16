@@ -16,9 +16,13 @@
   },
   "devDependencies": {},
   "scripts": {
+    "test" : "exit 0",
     "graphql": "micro graphql.js -p 3001",
     "graphiql": "micro graphiql.js -p 3002",
     "proxy": "micro-proxy -r rules.json -H 0.0.0.0 -p 3000",
     "start": "npm-run-all -pl proxy graphql graphiql"
+  },
+  "now": {
+    "alias": "score-api"
   }
 }
