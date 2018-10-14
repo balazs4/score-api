@@ -3,9 +3,9 @@
 
 > unofficial graphql endpoint for http://www.livescore.com page
 
-**GraphiQL Live Demo**: <https://score-api.now.sh>
+**GraphiQL Live Demo**: ~~https://score-api.now.sh~~
 
-**Endpoint**: <https://score-api.now.sh/graphql>
+**Endpoint**: ~~https://score-api.now.sh/graphql~~
 
 ![screenhot](./2018_06_05_21_30_1248_319.png)
 
